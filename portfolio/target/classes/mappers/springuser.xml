@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="springuser">
+	<!-- springuser 테이블의 email 중복체크를 위한 SQL -->
+	<!-- email에 해당하는 데이터 찾아오기 -->
+	<select id="emailcheck" parameterType="java.lang.String" resultType="java.lang.String">
+		select email
+		from springuser		
+	</select>
+	
+	<!-- nickname 중복체크를 위한 SQL -->
+	<select id="nicknamecheck" parameterType="java.lang.String" resultType="java.lang.String">
+		select nickname
+		from springuser
+		where nickname = #{nickname}
+	</select>
+	
+	<!-- 회원가입을 처리하는 SQL -->
+	<insert id="join" parameterType="kr.co.nfl.domain.SpringUser">
+		insert into springuser(email, pw, nickname, image)
+		value(#{email}, #{pw}, #{nickname}, #{image})
+	</insert>
+</mapper>
+  
